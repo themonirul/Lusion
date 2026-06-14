@@ -341,7 +341,8 @@ function ScrubberScreen(props: ScrubberScreenProps) {
     distort: props.fluidDistortionPower,
     pushPower: 25.0,
     flow: 0.985,
-    chaos: 5.0
+    chaos: 5.0,
+    dispersion: 1.0
   });
 
   useEffect(() => {
@@ -351,6 +352,7 @@ function ScrubberScreen(props: ScrubberScreenProps) {
       if (data.pushPower !== undefined) powers.current.pushPower = data.pushPower;
       if (data.flow !== undefined) powers.current.flow = data.flow;
       if (data.chaos !== undefined) powers.current.chaos = data.chaos;
+      if (data.dispersion !== undefined) powers.current.dispersion = data.dispersion;
     };
     Bus.on('store/scrubber', handleUpdate);
   }, []);
@@ -471,6 +473,7 @@ function ScrubberScreen(props: ScrubberScreenProps) {
     
     // Update composition uniforms
     material.uniforms.u_amount.value = THREE.MathUtils.lerp(material.uniforms.u_amount.value, powers.current.distort * 15.0, 0.1);
+    material.uniforms.u_rgbShift.value = THREE.MathUtils.lerp(material.uniforms.u_rgbShift.value, powers.current.dispersion, 0.1);
     
     onScrub?.(currentProgress.current);
     Store.update('scrubber', { currentProgress: currentProgress.current });

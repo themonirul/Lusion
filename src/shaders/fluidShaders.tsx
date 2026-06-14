@@ -123,20 +123,25 @@ export const DISTORTION_COMPOSITOR_FRAG = `
     vec2 vel = (0.5 - data.xy - 0.001) * 2.0 * weight;
     
     vec2 velocity = vel * u_amount / 4.0 * u_screenPaintTexelSize * u_multiplier;
-    vec2 uv = vUv + bnoise * velocity;
+    float dispersion = 2.0 * u_rgbShift; // Multiplier for channel spread
     
-    vec4 color = vec4(0.0);
-    // 9-tap motion blur along fluid path
+    // Multi-tap dispersion sampling
+    vec3 finalColor = vec3(0.0);
+    
+    // Sample 9 taps with channel shifting
+    vec2 uvBase = vUv + bnoise * velocity;
     for(int i = 0; i < 9; i++) {
-      color += texture2D(u_texture, uv);
-      uv += velocity;
+      finalColor.r += texture2D(u_texture, uvBase + velocity * dispersion * 0.2).r;
+      finalColor.g += texture2D(u_texture, uvBase).g;
+      finalColor.b += texture2D(u_texture, uvBase - velocity * dispersion * 0.2).b;
+      uvBase += velocity;
     }
-    color /= 9.0;
+    finalColor /= 9.0;
     
-    // Chromatic shimmer
+    // Chromatic shimmer accent
     vec3 shimmer = sin(vec3(vel.x + vel.y) * 40.0 + vec3(0.0, 2.0, 4.0) * u_rgbShift);
-    color.rgb += shimmer * smoothstep(0.4, -0.9, weight) * u_shade * max(abs(vel.x), abs(vel.y)) * u_colorMultiplier;
+    finalColor += shimmer * smoothstep(0.4, -0.9, weight) * u_shade * max(abs(vel.x), abs(vel.y)) * u_colorMultiplier;
     
-    gl_FragColor = color;
+    gl_FragColor = vec4(finalColor, 1.0);
   }
 `;

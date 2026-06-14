@@ -12,7 +12,8 @@ export const InterfacePanel: React.FC = () => {
     progress: 0.0,
     pushPower: 25.0,
     flow: 0.985,
-    chaos: 5.0
+    chaos: 5.0,
+    dispersion: 1.0
   });
 
   React.useEffect(() => {
@@ -24,7 +25,8 @@ export const InterfacePanel: React.FC = () => {
         progress: data.currentProgress !== undefined ? data.currentProgress : prev.progress,
         pushPower: data.pushPower !== undefined ? data.pushPower : prev.pushPower,
         flow: data.flow !== undefined ? data.flow : prev.flow,
-        chaos: data.chaos !== undefined ? data.chaos : prev.chaos
+        chaos: data.chaos !== undefined ? data.chaos : prev.chaos,
+        dispersion: data.dispersion !== undefined ? data.dispersion : prev.dispersion
       }));
     };
     Bus.on('store/scrubber', handleUpdate);
@@ -127,6 +129,15 @@ export const InterfacePanel: React.FC = () => {
           min={0} max={20} step={0.5} 
           value={params.chaos} 
           onChange={(v) => update('chaos', v, 'chaos')} 
+        />
+      </div>
+
+      <div style={styles.section}>
+        <Slider 
+          label="Dispersion" 
+          min={0} max={5} step={0.1} 
+          value={params.dispersion} 
+          onChange={(v) => update('dispersion', v, 'dispersion')} 
         />
       </div>
 

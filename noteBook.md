@@ -33,3 +33,7 @@
   - Extracted all GLSL shader strings into `/src/shaders/fluidShaders.tsx`.
   - Refactored `RendererEngine.tsx` to handle simulation via external shader module.
   - Improved codebase maintainability by separating GLSL logic from React components.
+- [x] [2024-06-14 00:46] Chromatic Dispersion Integration:
+  - Implemented multi-tap spectral sampling in the compositor shader.
+  - Added real-time Dispersion control to the Interface Panel.
+  - Synchronized uniform arrays for R, G, and B channel shifting along fluid vectors.
