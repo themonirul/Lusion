@@ -1,0 +1,35 @@
+# noteBook.md
+
+## [2026-06-13] - Project Initialization
+- [x] Initialized modular directory structure (Core -> Package -> Section -> Page -> App).
+- [x] Setup Reactive System (Event Bus, Data Store, Observer).
+- [x] Integrated Three.js 0.180.0 & GSAP 3.13.0.
+- [x] Implemented JS-in-JS styling architecture.
+- [x] Developed GPGPU Particle simulation module.
+- [x] Finalized decoupled Interface and Engine bridge.
+- [x] Implemented Light and Dark mode transition system.
+- [x] Documentation complete.
+- [x] [2026-06-13 15:40] Added control for fluid simulation brush size.
+- [x] [2026-06-13 15:52] Expanded control panel with comprehensive simulation parameters.
+  - Added sliders for Flow Intensity, Persistence, Grid Distortion, Chroma Shift, Density Decay, and Grid Tiling.
+  - Synchronized additional GPGPU uniforms in RendererEngine.tsx.
+  - Optimized reactive state updates via DataStore.
+- [x] [2026-06-13 15:56] Performance Optimization:
+  - Replaced high-frequency GSAP tweens in Engine with high-performance lerp loop (15% factor).
+  - Memoized InterfacePanel styles and optimized React state updates.
+  - Refactored Slider component to remove expensive animations during drag.
+- [x] [2026-06-13 16:03] Added Preset Selector (Mercury, Water, Oil):
+  - Implemented dynamic mapping for flow intensity, persistence, and curlScale.
+  - Added curl intensity control to the UI.
+  - Updated RendererEngine shader uniforms to support curl scaling.
+- [x] [2026-06-13 17:10] Lusion.co Style Integration:
+  - Re-engineered Fluid Solver with ScreenPaint GPGPU algorithm (Advection + Draw + Dissipation).
+  - Implemented 9-tap Gaussian Blur for physics data smoothing.
+  - Developed Motion-Blur aware compositor with Chromatic Shimmer effects.
+  - Added real-time controls for Push Power, Fluid Flow persistence, and Chaos noise.
+  - Optimized WebGL buffers for high-resolution fluid interaction.
+  - Fixed upside-down texture mapping by enabling flipY on video frame textures.
+- [x] [2024-06-14 00:38] Shader Modularization:
+  - Extracted all GLSL shader strings into `/src/shaders/fluidShaders.tsx`.
+  - Refactored `RendererEngine.tsx` to handle simulation via external shader module.
+  - Improved codebase maintainability by separating GLSL logic from React components.

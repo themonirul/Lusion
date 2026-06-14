@@ -1,11 +1,15 @@
-<div align="center">
+# GPGPU Particle Engine
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+A highly optimized, production-ready Three.js simulation engine that translates complex GPGPU physics algorithms into Vanilla Three.js implementations.
 
-  <h1>Built with AI Studio</h2>
+## Architecture
+- **Reactive Decoupled System**: Orchestrates React (Intent), FSM (State), Event Bus (Routing), and Data Store (Snapshotting).
+- **Three.js Core**: Pure 0.180.0 implementation, decoupled from React's component render cycle for maximum FPS.
+- **GSAP Orchestration**: Manages custom user-triggered timelines and animation physics outside React.
+- **Design System**: Atomic modular architecture with semantic design tokens and JS-in-JS styling.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
-
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+## Directory Map
+- `/src/lib`: Core simulation logic and Reactive System.
+- `/src/components/Core`: Basic UI atoms.
+- `/src/components/Section`: Major application sections (Renderer, Interface).
+- `/src/styles`: Theme and token definitions.

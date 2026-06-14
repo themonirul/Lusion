@@ -1,0 +1,6 @@
+{
+  "name": "Kinetic Scrubber",
+  "description": "High-performance scroll-driven video scrubber with GPGPU fluid distortion and center pinch effects.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
